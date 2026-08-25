@@ -24,8 +24,10 @@ jobs:
       - name: Install pnpm globally
         run: npm install -g pnpm
 
-      - name: Check pnpm
-        run: pnpm --version
+      - name: Install web-ui dependencies
+        run: |
+          cd web-ui
+          pnpm install
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
