@@ -16,14 +16,25 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install pnpm globally
+        run: npm install -g pnpm
+
+      - name: Check pnpm
+        run: pnpm --version
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
       - name: Grant execute for gradlew
         run: chmod +x ./gradlew
 
-      - name: Build app debug APK
-        run: ./gradlew :app:assembleDebug --stacktrace
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
